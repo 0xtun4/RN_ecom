@@ -1,0 +1,6 @@
+
+backend/node_modules/.bin/mime
+/backend/node_modules
+/.idea
+backend/public/.DS_Store
+backend/.env
