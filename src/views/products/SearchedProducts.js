@@ -11,7 +11,13 @@ const SearchedProduct = props => {
       <FlatList
         numColumns={2}
         data={productsFiltered}
-        renderItem={({item}) => <ProductList key={item.brand} item={item} />}
+        renderItem={({item}) => (
+          <ProductList
+            navigation={props.navigation}
+            key={item.brand}
+            item={item}
+          />
+        )}
         keyExtractor={item => item.name}
       />
     </View>

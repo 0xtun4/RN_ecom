@@ -1,28 +1,40 @@
 'use strict';
 import React, {useEffect, useState} from 'react';
-import { View, StyleSheet, Text, FlatList, TextInput, Image } from "react-native";
+import {View, StyleSheet, Text, FlatList, TextInput, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ProductList from './ProductList';
 import SearchedProducts from './SearchedProducts';
 import BannerCarousel from '../../shared/Banner';
+import CategoryFilter from './CategoryFilter';
 
 const data = require('../../../assets/data/products.json');
+const categoriesData = require('../../../assets/data/categories.json');
 
-const ProductContainer = () => {
+const ProductContainer = (props) => {
   const [products, setProducts] = useState([]);
   const [productsFiltered, setProductsFiltered] = useState([]);
   const [focus, setFocus] = useState();
+  const [categories, setCategories] = useState([]);
+  const [active, setActive] = useState();
+  const [initialState, setInitialState] = useState([]);
+  const [productsCtg, setProductsCtg] = useState([]);
 
   useEffect(() => {
     setProducts(data);
     setProductsFiltered(data);
     setFocus(false);
+    setCategories(categoriesData);
+    setActive(-1);
+    setInitialState(data);
     return () => {
       setProducts([]);
       setFocus(false);
       setProductsFiltered([]);
+      setCategories([]);
+      setActive();
+      setInitialState();
     };
-  }, []);
+  }, [categories]);
 
   const searchProduct = text => {
     setProductsFiltered(
@@ -33,7 +45,7 @@ const ProductContainer = () => {
   const renderData = ({item, index}) => {
     return (
       <View>
-        <Image source={{uri: item.source}} style={styles.carouselImage}></Image>
+        <Image source={{uri: item.source}} style={styles.carouselImage} />
       </View>
     );
   };
@@ -62,8 +74,21 @@ const ProductContainer = () => {
     setFocus(false);
   };
 
+  const changeCtg = ctg => {
+    {
+      ctg === 'all'
+        ? [setProductsCtg(initialState), setActive(true)]
+        : [
+            setProductsCtg(
+              products.filter(i => i.category.$oid === ctg),
+              setActive(true),
+            ),
+          ];
+    }
+  };
+
   return (
-    <View>
+    <View style={{backgroundColor: 'gainsboro'}}>
       <View style={styles.search}>
         <Icon name="search" />
         <TextInput
@@ -76,18 +101,31 @@ const ProductContainer = () => {
       </View>
       <View>
         {focus === true ? (
-          <SearchedProducts productsFiltered={productsFiltered} />
+          <SearchedProducts
+            navigation={props.navigation}
+            productsFiltered={productsFiltered}
+          />
         ) : (
           <View>
-            {/*<View style={styles.container} />*/}
-            <View>
+            <View style={styles.carousel}>
               <BannerCarousel dataBanner={dataBanner} renderData={renderData} />
             </View>
+            <FlatList
+              horizontal={true}
+              data={categories}
+              renderItem={({item}) => (
+                <CategoryFilter item={item} key={item.name} />
+              )}
+              keyExtractor={item => item.name}
+            />
             <FlatList
               numColumns={2}
               data={products}
               renderItem={({item}) => (
-                <ProductList key={item.brand} item={item} />
+                <ProductList
+                  navigation={props.navigation}
+                  key={item.brand}
+                  item={item}/>
               )}
               keyExtractor={item => item.name}
             />
@@ -132,6 +170,14 @@ const styles = StyleSheet.create({
   searchInput: {
     paddingLeft: 10,
     width: '90%',
+  },
+
+  carousel: {
+    borderRadius: 10,
+    borderStyle: 'solid',
+    borderWidth: 1,
+    borderBlockColor: 'black',
+    margin: 10,
   },
 
   carouselImage: {
