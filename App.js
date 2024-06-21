@@ -6,12 +6,11 @@
  */
 
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {NativeBaseProvider, extendTheme} from 'native-base';
 import ProductContainer from './src/views/products/ProductContainer.js';
 import Header from './src/shared/Header.js';
-import {View} from 'react-native';
+import {View, LogBox} from 'react-native';
 
+LogBox.ignoreAllLogs(true);
 function App() {
   return (
     <View>

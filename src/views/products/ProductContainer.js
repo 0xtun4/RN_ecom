@@ -1,9 +1,10 @@
 'use strict';
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, Text, FlatList, TextInput} from 'react-native';
+import { View, StyleSheet, Text, FlatList, TextInput, Image } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ProductList from './ProductList';
 import SearchedProducts from './SearchedProducts';
+import BannerCarousel from '../../shared/Banner';
 
 const data = require('../../../assets/data/products.json');
 
@@ -29,6 +30,30 @@ const ProductContainer = () => {
     );
   };
 
+  const renderData = ({item, index}) => {
+    return (
+      <View>
+        <Image source={{uri: item.source}} style={styles.carouselImage}></Image>
+      </View>
+    );
+  };
+
+  const dataBanner = [
+    {
+      source: 'https://www.freepngimg.com/thumb/fifa/11-2-fifa-png-images.png',
+      name: 'banner 1',
+    },
+    {
+      source:
+        'https://static1.squarespace.com/static/5a51022ff43b55247f47ccfc/5a567854f9619a96fd6233bb/5b74446c40ec9afbc633e555/1534346950637/Husqvarna+545FR+%282%29.png?format=1500w',
+      name: 'banner 2',
+    },
+    {
+      source: 'https://www.freepngimg.com/thumb/fifa/11-2-fifa-png-images.png',
+      name: 'banner 3',
+    },
+  ];
+
   const openList = () => {
     setFocus(true);
   };
@@ -46,14 +71,18 @@ const ProductContainer = () => {
           placeholder="Search"
           onFocus={openList}
           onChangeText={text => searchProduct(text)}
-          onBlur={onBlur}
         />
+        {focus === true ? <Icon name="close" onPress={onBlur} /> : null}
       </View>
       <View>
         {focus === true ? (
           <SearchedProducts productsFiltered={productsFiltered} />
         ) : (
           <View>
+            {/*<View style={styles.container} />*/}
+            <View>
+              <BannerCarousel dataBanner={dataBanner} renderData={renderData} />
+            </View>
             <FlatList
               numColumns={2}
               data={products}
@@ -102,7 +131,12 @@ const styles = StyleSheet.create({
 
   searchInput: {
     paddingLeft: 10,
-    width: '100%',
+    width: '90%',
+  },
+
+  carouselImage: {
+    height: 170,
+    width: 350,
   },
 });
 

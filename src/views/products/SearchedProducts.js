@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Dimensions, View, FlatList } from 'react-native';
+import {StyleSheet, Dimensions, View, FlatList } from 'react-native';
 import ProductList from './ProductList';
 
 var {width} = Dimensions.get('window');
