@@ -44,6 +44,24 @@ router.get(`/`, async (req, res) => {
     res.send(productList);
 });
 
+router.get('/category/:categoryId', async (req, res) => {
+    const categoryId = req.params.categoryId;
+
+    try {
+        const productList = await Product.find({ category: categoryId }).populate('category');
+
+        if (!productList) {
+            return res.status(404).json({ success: false, message: 'No products found for this category.' });
+        }
+
+        res.status(200).json({ success: true, products: productList });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Server Error' });
+    }
+});
+
+
 router.get(`/:id`, async (req, res) => {
     const product = await Product.findById(req.params.id).populate('category');
 
