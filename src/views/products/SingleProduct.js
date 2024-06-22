@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, ScrollView, Image } from 'react-native';
 import { Button } from "react-native-elements";
-import style from "../../shared/style";
+import style from '../../shared/Style';
 const SingleProduct = (props) => {
   const [item, setItem] = useState(props.route.params.item);
   const [availability, setAvailability] = useState('');

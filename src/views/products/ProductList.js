@@ -9,7 +9,9 @@ const ProductList = props => {
     <ScrollView>
       <TouchableOpacity
         style={{width: '50%'}}
-        onPress={() => props.navigation.navigate('ProductDetail', {item:item})}>
+        onPress={() =>
+          props.navigation.navigate('ProductDetail', {item: item})
+        }>
         <ProductCard {...item} />
       </TouchableOpacity>
     </ScrollView>

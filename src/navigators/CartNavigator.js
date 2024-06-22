@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Cart from '../views/cart/Cart';
-// import CheckoutNavigator from './CheckoutNavigator';
+import checkoutNavigator from './CheckoutNavigator';
 
 const Stack = createStackNavigator();
 
@@ -16,13 +16,13 @@ function MyStack() {
           headerShown: false,
         }}
       />
-      {/*<Stack.Screen*/}
-      {/*  name="Checkout"*/}
-      {/*  component={CheckoutNavigator}*/}
-      {/*  options={{*/}
-      {/*    title: 'Checkout',*/}
-      {/*  }}*/}
-      {/*/>*/}
+      <Stack.Screen
+        name="Checkout"
+        component={checkoutNavigator}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 }

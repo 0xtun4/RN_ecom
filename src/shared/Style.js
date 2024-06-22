@@ -1,10 +1,23 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import { Dimensions, StyleSheet } from "react-native";
 
 const style = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
+  },
+  body: {
+    width: Dimensions.get('window').width - 90,
+    flexDirection: 'row',
+    position: 'relative',
+    justifyContent: 'space-between',
+    right: 10,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'black',
+    padding: 10,
   },
 
   text: {
@@ -24,11 +37,25 @@ const style = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
+  image: {
+    width: 90,
+    height: 90,
+  },
 
   price: {
     fontSize: 18,
     fontWeight: 'bold',
     color: 'red',
+  },
+  listCartItems: {
+    borderBottomWidth: 0.5,
+    borderStyle: 'dotted',
+    borderColor: 'gray',
+    flexDirection: 'row',
+    alignItems: 'center',
+    position: 'relative',
+    bottom: 0,
+    left: 0,
   },
 
   button: {

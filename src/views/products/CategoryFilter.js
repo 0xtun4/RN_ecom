@@ -23,8 +23,11 @@ const CategoryFilter = props => {
 
 const styles = StyleSheet.create({
   scrollView: {
+    marginTop: 10,
+    marginLeft: 10,
     backgroundColor: 'gainsboro',
     marginHorizontal: 5,
+    height: 50,
   },
 
   listItem: {

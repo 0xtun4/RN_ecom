@@ -1,25 +1,25 @@
 import React from 'react';
 import {Dimensions, Image, Text, View, StyleSheet} from 'react-native';
-import {Button} from 'react-native-elements';
+import { Button } from 'react-native-paper';
 let {width} = Dimensions.get('window');
 
 const CategoryBadget = props => {
   const {name} = props;
   return (
     <View>
-      <Button title={name} type="outline" containerStyle={styles.button} />
+      <Button
+        type="elevated"
+        mode="elevated"
+        buttonColor={randomColor()}
+        textColor="black">
+        {name}
+      </Button>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  button: {
-    backgroundColor: 'gainsboro',
-    borderRadius: 10,
-    borderStyle: 'solid',
-    borderWidth: 1,
-    borderColor: 'black',
-  },
-});
+const randomColor = () => {
+  return '#' + Math.floor(Math.random() * 16777215).toString(16);
+};
 
 export default CategoryBadget;

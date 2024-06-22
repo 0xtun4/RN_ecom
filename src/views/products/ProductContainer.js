@@ -125,7 +125,8 @@ const ProductContainer = (props) => {
                 <ProductList
                   navigation={props.navigation}
                   key={item.brand}
-                  item={item}/>
+                  item={item}
+                />
               )}
               keyExtractor={item => item.name}
             />

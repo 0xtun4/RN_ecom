@@ -1,6 +1,6 @@
 import React from 'react';
 import {Dimensions, Image, Text, View, StyleSheet} from 'react-native';
-import {Button} from 'react-native-elements';
+import { Button } from 'react-native-paper';
 import {connect} from 'react-redux';
 import * as actions from '../../redux/actions/cartActions';
 
@@ -27,12 +27,15 @@ const ProductCard = props => {
       {countInStock > 0 ? (
         <View>
           <Button
-            title={'Add to cart'}
-            containerStyle={styles.button}
+            type="elevated"
+            mode="elevated"
+            textColor="gray"
+            buttonColor={'#f0f0f0'}
             onPress={() => {
               props.addItemToCart(props);
-            }}
-          />
+            }}>
+            Add to cart
+          </Button>
         </View>
       ) : (
         <Text style={{marginTop: 10, color: 'red'}}>Out of Stock</Text>

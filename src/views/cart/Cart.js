@@ -11,11 +11,10 @@ import {
 } from 'react-native';
 import * as actions from '../../redux/actions/cartActions';
 import {Button} from 'react-native-elements';
-import style from '../../shared/style';
+import style from '../../shared/Style';
 import {Swipeable} from 'react-native-gesture-handler';
 const Cart = props => {
   const rightSwipeActions = item => {
-    console.log(item);
     return (
       <View style={styles.swipeable}>
         <TouchableOpacity
@@ -42,9 +41,9 @@ const Cart = props => {
           {props.cartItems.map((item, index) => {
             return (
               <Swipeable renderRightActions={() => rightSwipeActions(item)}>
-                <View key={item.product.id} style={styles.listCartItems}>
+                <View key={item.product.id} style={style.listCartItems}>
                   <Image
-                    style={styles.image}
+                    style={style.image}
                     resizeMode={'contain'}
                     source={{
                       uri: item.product.image
@@ -71,7 +70,11 @@ const Cart = props => {
                 props.clearCart();
               }}
             />
-            <Button title="Checkout" type={'clear'} />
+            <Button
+              title="Checkout"
+              type={'clear'}
+              onPress={() => props.navigation.navigate('Checkout')}
+            />
           </View>
         </View>
       ) : (
@@ -107,28 +110,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
-
-  listCartItems: {
-    borderBottomWidth: 0.5,
-    borderStyle: 'dotted',
-    borderColor: 'gray',
-    flexDirection: 'row',
-    alignItems: 'center',
-    position: 'relative',
-    bottom: 0,
-    left: 0,
-  },
-
   body: {
     width: Dimensions.get('window').width - 90,
     flexDirection: 'row',
     position: 'relative',
     justifyContent: 'space-between',
     right: 0,
-  },
-  image: {
-    width: 90,
-    height: 90,
   },
   emptyContainer: {
     flex: 1,
