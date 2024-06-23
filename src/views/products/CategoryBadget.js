@@ -10,16 +10,12 @@ const CategoryBadget = props => {
       <Button
         type="elevated"
         mode="elevated"
-        buttonColor={randomColor()}
-        textColor="black">
+        buttonColor={'#6d9ff2'}
+        textColor="white">
         {name}
       </Button>
     </View>
   );
-};
-
-const randomColor = () => {
-  return '#' + Math.floor(Math.random() * 16777215).toString(16);
 };
 
 export default CategoryBadget;

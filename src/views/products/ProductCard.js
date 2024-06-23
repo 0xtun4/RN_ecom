@@ -29,7 +29,8 @@ const ProductCard = props => {
           <Button
             type="elevated"
             mode="elevated"
-            textColor="gray"
+            textColor="green"
+            icon="cart"
             buttonColor={'#f0f0f0'}
             onPress={() => {
               props.addItemToCart(props);

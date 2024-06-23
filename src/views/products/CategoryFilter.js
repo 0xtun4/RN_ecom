@@ -12,6 +12,7 @@ import CategoryBadget from './CategoryBadget';
 
 const CategoryFilter = props => {
   const {item} = props;
+  console.log('CategoryFilter -> item', item);
   return (
     <ScrollView style={styles.scrollView} bounces={true} horizontal={true}>
       <TouchableOpacity key={1} style={styles.listItem}>
