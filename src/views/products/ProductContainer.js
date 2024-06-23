@@ -1,5 +1,5 @@
-
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
+import {API_URL} from '@env';
 import {
   View,
   StyleSheet,
@@ -8,17 +8,17 @@ import {
   TextInput,
   Image,
   ScrollView,
+  ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ProductList from './ProductList';
 import SearchedProducts from './SearchedProducts';
 import BannerCarousel from '../../shared/Banner';
 import CategoryFilter from './CategoryFilter';
-
-const data = require('../../../assets/data/products.json');
-const categoriesData = require('../../../assets/data/categories.json');
-import BaseUrl from '../../common/baseUrl';
 import axios from 'axios';
+import {useFocusEffect} from '@react-navigation/native';
+import {prefixUrl} from '../../services/instance';
+import style from '../../shared/Style';
 
 const ProductContainer = props => {
   const [products, setProducts] = useState([]);
@@ -28,40 +28,43 @@ const ProductContainer = props => {
   const [active, setActive] = useState();
   const [initialState, setInitialState] = useState([]);
   const [productsCtg, setProductsCtg] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setFocus(false);
-    setActive(-1);
-
-    axios
-      .get(`${BaseUrl}/products`)
-      .then(res => {
-        setProducts(res.data);
-        setProductsFiltered(res.data);
-        setInitialState(res.data);
-      })
-      .catch(error => {
-        console.log('Error fetching categories', error);
-      });
-
-    axios
-      .get(`${BaseUrl}/categories`)
-      .then(res => {
-        setCategories(res.data);
-      })
-      .catch(error => {
-        console.log('Error fetching categories', error);
-      });
-
-    return () => {
-      setProducts([]);
+  useFocusEffect(
+    useCallback(() => {
       setFocus(false);
-      setProductsFiltered([]);
-      setCategories([]);
-      setActive();
-      setInitialState();
-    };
-  }, []);
+      setActive(-1);
+
+      axios
+        .get(`${prefixUrl}/products`)
+        .then(res => {
+          setProducts(res.data);
+          setProductsFiltered(res.data);
+          setLoading(false);
+        })
+        .catch(error => {
+          console.log('Error fetching categories', error);
+        });
+
+      axios
+        .get(`${prefixUrl}/categories`)
+        .then(res => {
+          setCategories(res.data);
+        })
+        .catch(error => {
+          console.log('Error fetching categories', error);
+        });
+
+      return () => {
+        setProducts([]);
+        setFocus(false);
+        setProductsFiltered([]);
+        setCategories([]);
+        setActive();
+        setInitialState();
+      };
+    }, []),
+  );
 
   const searchProduct = text => {
     setProductsFiltered(
@@ -101,72 +104,68 @@ const ProductContainer = props => {
     setFocus(false);
   };
 
-  const changeCtg = ctg => {
-    {
-      ctg === 'all'
-        ? [setProductsCtg(initialState), setActive(true)]
-        : [
-            setProductsCtg(
-              products.filter(i => i.category.$oid === ctg),
-              setActive(true),
-            ),
-          ];
-    }
-  };
-
   return (
-    <ScrollView>
-      <View style={{backgroundColor: 'gainsboro'}}>
-        <View style={styles.search}>
-          <Icon name="search" />
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Search"
-            onFocus={openList}
-            onChangeText={text => searchProduct(text)}
-          />
-          {focus === true ? <Icon name="close" onPress={onBlur} /> : null}
-        </View>
-        <View>
-          {focus === true ? (
-            <SearchedProducts
-              navigation={props.navigation}
-              productsFiltered={productsFiltered}
-            />
-          ) : (
-            <View>
-              <View style={styles.carousel}>
-                <BannerCarousel
-                  dataBanner={dataBanner}
-                  renderData={renderData}
-                />
-              </View>
-              <FlatList
-                horizontal={true}
-                data={categories}
-                renderItem={({item}) => (
-                  <CategoryFilter item={item} key={item.name} />
-                )}
-                keyExtractor={item => item.name}
+    <>
+      {loading === false ? (
+        <ScrollView>
+          <View style={{backgroundColor: 'gainsboro'}}>
+            <View style={styles.search}>
+              <Icon name="search" />
+              <TextInput
+                style={styles.searchInput}
+                placeholder="Search"
+                onFocus={openList}
+                onChangeText={text => searchProduct(text)}
               />
-              <FlatList
-                bounces={true}
-                numColumns={2}
-                data={products}
-                renderItem={({item}) => (
-                  <ProductList
-                    navigation={props.navigation}
-                    key={item.brand}
-                    item={item}
-                  />
-                )}
-                keyExtractor={item => item.name}
-              />
+              {focus === true ? <Icon name="close" onPress={onBlur} /> : null}
             </View>
-          )}
+            <View>
+              {focus === true ? (
+                <SearchedProducts
+                  navigation={props.navigation}
+                  productsFiltered={productsFiltered}
+                />
+              ) : (
+                <View>
+                  <View style={styles.carousel}>
+                    <BannerCarousel
+                      dataBanner={dataBanner}
+                      renderData={renderData}
+                    />
+                  </View>
+                  <FlatList
+                    horizontal={true}
+                    data={categories}
+                    renderItem={({item}) => (
+                      <CategoryFilter item={item} key={item.name} />
+                    )}
+                    keyExtractor={item => item.name}
+                  />
+                  <FlatList
+                    bounces={true}
+                    numColumns={2}
+                    data={products}
+                    initialNumToRender={4}
+                    renderItem={({item}) => (
+                      <ProductList
+                        navigation={props.navigation}
+                        key={item.brand}
+                        item={item}
+                      />
+                    )}
+                    keyExtractor={item => item.name}
+                  />
+                </View>
+              )}
+            </View>
+          </View>
+        </ScrollView>
+      ) : (
+        <View style={[styles.center, {backgroundColor: '#f2f2f2'}]}>
+          <ActivityIndicator style={style.spinner} size="large" color="red" />
         </View>
-      </View>
-    </ScrollView>
+      )}
+    </>
     // <Text style={styles.container}>Product Container</Text>
   );
 };
@@ -187,6 +186,7 @@ const styles = StyleSheet.create({
   center: {
     justifyContent: 'center',
     alignItems: 'center',
+    alignSelf: 'center',
   },
 
   search: {

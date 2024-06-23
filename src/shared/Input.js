@@ -20,13 +20,13 @@ const Input = (props) => {
 
 const styles = StyleSheet.create({
   input: {
-    width: '80%',
-    height: 60,
+    width: '90%',
+    height: 40,
     backgroundColor: 'white',
     margin: 10,
-    borderRadius: 20,
+    borderRadius: 10,
     padding: 10,
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: 'black',
   },
 });

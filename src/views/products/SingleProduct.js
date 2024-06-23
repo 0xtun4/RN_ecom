@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, ScrollView, Image } from 'react-native';
-import { Button } from "react-native-elements";
 import style from '../../shared/Style';
+import { Button } from "react-native-paper";
+import {connect} from 'react-redux';
+import Toast from "react-native-toast-message";
+import * as actions from "../../redux/actions/cartActions";
 const SingleProduct = (props) => {
   const [item, setItem] = useState(props.route.params.item);
   const [availability, setAvailability] = useState('');
@@ -27,12 +30,33 @@ const SingleProduct = (props) => {
       </ScrollView>
       <View style={style.bottom}>
         <Text style={style.price}>${item.price}</Text>
-        <Button title={'Add to cart'} containerStyle={styles.button}></Button>
+        <Button
+          type="elevated"
+          mode="elevated"
+          textColor="green"
+          icon="cart"
+          buttonColor={'#f0f0f0'}
+          onPress={() => {
+            props.addItemToCart(item);
+            Toast.show({
+              topOffset: 60,
+              type: 'success',
+              text1: `${item.name} added to Cart`,
+              text2: 'Go to your cart to complete order',
+            });
+          }}>
+          Add to cart
+        </Button>
       </View>
     </View>
   );
 };
-
+const mapDispatchToProps = dispatch => {
+  return {
+    addItemToCart: product =>
+      dispatch(actions.addToCart({quantity: 1, product})),
+  };
+};
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
@@ -74,4 +98,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SingleProduct;
+
+export default connect(null, mapDispatchToProps)(SingleProduct);

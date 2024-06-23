@@ -1,13 +1,18 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {View} from 'react-native';
 import HomeNavigator from './HomeNavigator';
 import CartNavigator from './CartNavigator';
 import CartIcon from '../shared/CartIcon';
+import UserNavigator from './UserNavigator';
+import AdminNavigator from './AdminNavigator';
+import AuthGlobal from '../context/store/AuthGlobal';
 const Tab = createBottomTabNavigator();
 
 const Main = () => {
+  const context = useContext(AuthGlobal);
+  console.log(context.stateUser.user.isAdmin);
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -20,6 +25,7 @@ const Main = () => {
         name="Home"
         component={HomeNavigator}
         options={{
+          headerShown: false,
           tabBarIcon: ({color}) => (
             <Icon
               name="home"
@@ -34,6 +40,7 @@ const Main = () => {
         name="Cart"
         component={CartNavigator}
         options={{
+          headerShown: false,
           tabBarIcon: ({color}) => (
             <View>
               <Icon
@@ -47,34 +54,40 @@ const Main = () => {
           ),
         }}
       />
-      {/*<Tab.Screen*/}
-      {/*  name="Admin"*/}
-      {/*  component={HomeNavigator}*/}
-      {/*  options={{*/}
-      {/*    tabBarIcon: ({color}) => (*/}
-      {/*      <Icon*/}
-      {/*        name="cogs"*/}
-      {/*        style={{position: 'relative'}}*/}
-      {/*        color={color}*/}
-      {/*        size={30}*/}
-      {/*      />*/}
-      {/*    ),*/}
-      {/*  }}*/}
-      {/*/>*/}
-      {/*<Tab.Screen*/}
-      {/*  name="Profile"*/}
-      {/*  component={HomeNavigator}*/}
-      {/*  options={{*/}
-      {/*    tabBarIcon: ({color}) => (*/}
-      {/*      <Icon*/}
-      {/*        name="user"*/}
-      {/*        style={{position: 'relative'}}*/}
-      {/*        color={color}*/}
-      {/*        size={30}*/}
-      {/*      />*/}
-      {/*    ),*/}
-      {/*  }}*/}
-      {/*/>*/}
+
+      {context.stateUser.user.isAdmin === true ? (
+        <Tab.Screen
+          name="Admin"
+          component={AdminNavigator}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({color}) => (
+              <Icon
+                name="cogs"
+                style={{position: 'relative'}}
+                color={color}
+                size={30}
+              />
+            ),
+          }}
+        />
+      ) : null}
+
+      <Tab.Screen
+        name="Profile"
+        component={UserNavigator}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({color}) => (
+            <Icon
+              name="user"
+              style={{position: 'relative'}}
+              color={color}
+              size={30}
+            />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };

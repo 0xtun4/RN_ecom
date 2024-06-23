@@ -1,6 +1,6 @@
 import React from 'react';
-import { Dimensions, StyleSheet } from "react-native";
-
+import {Dimensions, StyleSheet} from 'react-native';
+let {width, height} = Dimensions.get('window');
 const style = StyleSheet.create({
   container: {
     flex: 1,
@@ -18,6 +18,10 @@ const style = StyleSheet.create({
     fontWeight: 'bold',
     color: 'black',
     padding: 10,
+  },
+  input: {
+    width: '90%',
+    margin: 10,
   },
 
   text: {
@@ -61,6 +65,16 @@ const style = StyleSheet.create({
   button: {
     borderRadius: 10,
     marginLeft: 'auto',
+  },
+
+  buttonGroup: {
+    width: '80%',
+    alignItems: 'center',
+  },
+  spinner: {
+    height: height / 2,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

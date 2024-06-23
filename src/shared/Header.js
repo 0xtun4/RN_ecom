@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     padding: 20,
-    backgroundColor: 'white',
+    backgroundColor: 'gainsboro',
     elevation: 8,
     height: 50,
   },

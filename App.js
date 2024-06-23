@@ -12,15 +12,20 @@ import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
 import store from './src/redux/store';
 import Main from './src/navigators/Main.js';
+import Toast from 'react-native-toast-message';
+import Auth from './src/context/store/Auth';
 // LogBox.ignoreAllLogs(true);
 function App() {
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <Header />
-        <Main />
-      </NavigationContainer>
-    </Provider>
+    <Auth>
+      <Provider store={store}>
+        <NavigationContainer>
+          <Header />
+          <Main />
+          <Toast ref={ref => Toast.setRef(ref)} />
+        </NavigationContainer>
+      </Provider>
+    </Auth>
   );
 }
 
