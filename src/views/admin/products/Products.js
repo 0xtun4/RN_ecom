@@ -16,15 +16,14 @@ import axios from 'axios';
 import {prefixUrl} from '../../../services/instance';
 import SearchedProducts from '../../products/SearchedProducts';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import style from "../../../shared/Style";
+import style from '../../../shared/Style';
 import ListItem from './ListItem';
 
 let {width, height} = Dimensions.get('window');
 const ListHeader = () => {
   return (
-    <View elevation={1}
-    style={styles.listHeader}>
-      <View style={styles.headerItem}></View>
+    <View elevation={1} style={styles.listHeader}>
+      <View style={styles.headerItem} />
       <View style={styles.headerItem}>
         <Text style={styles.text}>Brand</Text>
       </View>
@@ -33,13 +32,13 @@ const ListHeader = () => {
       </View>
       <View style={styles.headerItem}>
         <Text style={styles.text}>Category</Text>
-      </View >
+      </View>
       <View style={styles.headerItem}>
         <Text style={styles.text}>Price</Text>
-      </View >
+      </View>
     </View>
   );
-}
+};
 const Products = props => {
   const [productList, setProductList] = useState([]);
   const [productsFiltered, setProductsFiltered] = useState([]);
@@ -67,6 +66,31 @@ const Products = props => {
       };
     }, []),
   );
+
+  const searchProduct = text => {
+    if (text === '') {
+      setProductsFiltered(productList);
+    }
+    setProductsFiltered(
+      productList.filter(i =>
+        i.name.toLowerCase().includes(text.toLowerCase()),
+      ),
+    );
+  };
+
+  const deleteProduct = id => {
+    axios
+      .delete(`${prefixUrl}/products/${id}`, {
+        headers: {Authorization: `Bearer ${token}`},
+      })
+      .then(res => {
+        const products = productList.filter(i => i.id !== id);
+        setProductList(products);
+        setProductsFiltered(products);
+      })
+      .catch(error => console.log(error));
+  };
+
   return (
     <View>
       <View style={styles.search}>
@@ -74,18 +98,12 @@ const Products = props => {
         <TextInput
           style={styles.searchInput}
           placeholder="Search"
-          // onFocus={openList}
-          // onChangeText={text => searchProduct(text)}
+          onChangeText={text => searchProduct(text)}
         />
-        {/*{focus === true ? <Icon name="close" onPress={onBlur} /> : null}*/}
       </View>
       {loading ? (
         <View>
-          <ActivityIndicator
-            style={style.spinner}
-            size="large"
-            color="red"
-          />
+          <ActivityIndicator style={style.spinner} size="large" color="red" />
         </View>
       ) : (
         <FlatList
@@ -97,6 +115,7 @@ const Products = props => {
               navigation={props.navigation}
               key={index}
               index={index}
+              delete={deleteProduct}
             />
           )}
           keyExtractor={item => item.id}
@@ -122,16 +141,16 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     width: '90%',
   },
-  listHeader:{
+  listHeader: {
     flexDirection: 'row',
     padding: 5,
     backgroundColor: 'gainsboro',
   },
-  headerItem:{
+  headerItem: {
     margin: 3,
     width: width / 6,
   },
-  text:{
+  text: {
     fontWeight: 'bold',
     color: 'black',
   },

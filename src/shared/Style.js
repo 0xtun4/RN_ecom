@@ -65,6 +65,7 @@ const style = StyleSheet.create({
   button: {
     borderRadius: 10,
     marginLeft: 'auto',
+    width: 100,
   },
 
   buttonGroup: {
