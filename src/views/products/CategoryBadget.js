@@ -4,7 +4,7 @@ import { Button } from 'react-native-paper';
 let {width} = Dimensions.get('window');
 
 const CategoryBadget = props => {
-  const {name} = props;
+  const {label} = props;
   return (
     <View>
       <Button
@@ -12,7 +12,7 @@ const CategoryBadget = props => {
         mode="elevated"
         buttonColor={'#6d9ff2'}
         textColor="white">
-        {name}
+        {label}
       </Button>
     </View>
   );

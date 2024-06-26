@@ -13,11 +13,13 @@ import {
 import {useFocusEffect} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
-import {prefixUrl} from '../../../services/instance';
-import SearchedProducts from '../../products/SearchedProducts';
+import {prefixUrl} from '../../services/instance';
+import SearchedProducts from '../products/SearchedProducts';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import style from '../../../shared/Style';
+import style from '../../shared/Style';
 import ListItem from './ListItem';
+import {Button} from 'react-native-paper';
+import {white} from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
 
 let {width, height} = Dimensions.get('window');
 const ListHeader = () => {
@@ -93,6 +95,26 @@ const Products = props => {
 
   return (
     <View>
+      <View style={style.top}>
+        <Button
+          icon={'cart'}
+          mode={'contained'}
+          onPress={() => props.navigation.navigate('Order')}>
+          Orders
+        </Button>
+        <Button
+          icon={'plus'}
+          mode={'contained'}
+          onPress={() => props.navigation.navigate('ProductsForm')}>
+          Products
+        </Button>
+        <Button
+          icon={'plus'}
+          mode={'contained'}
+          onPress={() => props.navigation.navigate('Categories')}>
+          Categories
+        </Button>
+      </View>
       <View style={styles.search}>
         <Icon name="search" />
         <TextInput

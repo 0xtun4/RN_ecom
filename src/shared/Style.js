@@ -41,6 +41,20 @@ const style = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
+
+  top: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    position: 'relative',
+    top: 0,
+    left: 0,
+    backgroundColor: 'white',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+  },
+
   image: {
     width: 90,
     height: 90,

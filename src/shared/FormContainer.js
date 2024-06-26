@@ -4,7 +4,7 @@ import style from './Style';
 
 let {width} = Dimensions.get('window');
 
-const FormContainer = (props) => {
+const FormContainer = props => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={style.title}>{props.title}</Text>

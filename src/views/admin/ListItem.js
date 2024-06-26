@@ -12,7 +12,7 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 import {Button} from 'react-native-paper';
-import style from "../../../shared/Style";
+import style from '../../shared/Style';
 
 const {width} = Dimensions.get('window');
 

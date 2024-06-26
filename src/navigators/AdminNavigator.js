@@ -1,8 +1,8 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Categories from '../views/admin/Categories';
-import Products from '../views/admin/products/Products';
-import ProductsForm from '../views/admin/products/ProductsForm';
+import Products from '../views/admin/Products';
+import ProductsForm from '../views/admin/ProductsForm';
 import Order from '../views/admin/Order';
 
 const Stack = createStackNavigator();
@@ -22,7 +22,7 @@ const AdminNavigator = () => {
         name="Categories"
         component={Categories}
         options={{
-          headerShown: false,
+          // headerShown: false,
           title: 'Categories',
         }}
       />
@@ -30,15 +30,15 @@ const AdminNavigator = () => {
         name="ProductsForm"
         component={ProductsForm}
         options={{
-          headerShown: false,
-          title: 'Products Form',
+          // headerShown: false,
+          title: 'Add product',
         }}
       />
       <Stack.Screen
         name="Order"
         component={Order}
         options={{
-          headerShown: false,
+          // headerShown: false,
           title: 'Order',
         }}
       />
