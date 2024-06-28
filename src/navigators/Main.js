@@ -12,7 +12,6 @@ const Tab = createBottomTabNavigator();
 
 const Main = () => {
   const context = useContext(AuthGlobal);
-  console.log(context.stateUser.user.isAdmin);
   return (
     <Tab.Navigator
       initialRouteName="Home"

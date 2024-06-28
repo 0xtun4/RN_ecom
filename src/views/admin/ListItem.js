@@ -40,7 +40,10 @@ const ListItem = props => {
               style={style.button}
               mode="contained"
               buttonColor={'blue'}
-              onPress={() => props.navigation.navigate('ProductForm')}>
+              onPress={() => [
+                props.navigation.navigate('ProductsForm', {item: props}),
+                setModalVisible(false),
+              ]}>
               Edit
             </Button>
             <Button

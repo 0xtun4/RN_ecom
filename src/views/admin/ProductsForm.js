@@ -42,6 +42,19 @@ const ProductsForm = props => {
   const [item, setItem] = useState(null);
 
   useEffect(() => {
+    if (!props.route.params) {
+      setItem(null);
+    } else {
+      setItem(props.route.params.item);
+      setBrand(props.route.params.item.brand);
+      setName(props.route.params.item.name);
+      setPrice(props.route.params.item.price.toString());
+      setDescription(props.route.params.item.description);
+      setMainImage(props.route.params.item.image);
+      setImage(props.route.params.item.image);
+      setCategory(props.route.params.item.category);
+      setCountInStock(props.route.params.item.countInStock.toString());
+    }
     AsyncStorage.getItem('jwt')
       .then(res => {
         setToken(res);
@@ -51,25 +64,24 @@ const ProductsForm = props => {
       .get(`${prefixUrl}/categories`)
       .then(res => {
         setCategories(res.data);
-        console.log('res', res.data);
       })
       .catch(err => {
         alert(err);
       });
 
-    (async () => {
-      if (Platform.OS !== 'web') {
-        const {status} = await ImagePicker.requestCameraPermissionsAsync();
-        if (status !== 'granted') {
-          alert('Sorry, we need camera roll permissions to make this work!');
-        }
-      }
-    })();
+    // (async () => {
+    //   if (Platform.OS !== 'web') {
+    //     const {status} = await ImagePicker.requestCameraPermissionsAsync();
+    //     if (status !== 'granted') {
+    //       alert('Sorry, we need camera roll permissions to make this work!');
+    //     }
+    //   }
+    // })();
 
     return () => {
       setCategories([]);
     };
-  }, []);
+  }, [props.route.params]);
 
   const ImagePicker = async () => {
     const options = {
@@ -122,7 +134,6 @@ const ProductsForm = props => {
     formData.append('rating', rating);
     formData.append('numReviews', numReviews);
     formData.append('isFeatured', isFeatured);
-    console.log('formData', formData);
     const config = {
       headers: {
         'Content-Type': 'multipart/form-data',
@@ -134,7 +145,7 @@ const ProductsForm = props => {
       axios
         .put(`${prefixUrl}/products/${item.id}`, formData, config)
         .then(res => {
-          if (res.status == 200 || res.status == 201) {
+          if (res.status === 200 || res.status === 201) {
             Toast.show({
               topOffset: 60,
               type: 'success',
@@ -151,14 +162,14 @@ const ProductsForm = props => {
             topOffset: 60,
             type: 'error',
             text1: 'Something went wrong',
-            text2: 'Please try again',
+            text2: `${error}`,
           });
         });
     } else {
       axios
         .post(`${prefixUrl}/products`, formData, config)
         .then(res => {
-          if (res.status == 200 || res.status == 201) {
+          if (res.status === 200 || res.status === 201) {
             Toast.show({
               topOffset: 60,
               type: 'success',
@@ -251,7 +262,7 @@ const ProductsForm = props => {
         <Button
           textColor={'white'}
           buttonColor={'red'}
-          onPress={() => props.navigation.navigate('')}>
+          onPress={() => props.navigation.navigate('Products')}>
           Cancel
         </Button>
         <Button

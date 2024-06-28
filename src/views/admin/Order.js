@@ -1,10 +1,47 @@
-import React from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import React, {useCallback, useState} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  FlatList,
+} from 'react-native';
+import axios from 'axios';
+import {prefixUrl} from '../../services/instance';
+import {useFocusEffect} from '@react-navigation/native';
+import OrderCard from "../../shared/OrderCard";
 
 const Order = props => {
+  const [orderList, setOrderList] = useState([]);
+
+  useFocusEffect(
+    useCallback(() => {
+      getOrders();
+      return () => {
+        setOrderList([]);
+      };
+    }, []),
+  );
+  const getOrders = async () => {
+    axios
+      .get(`${prefixUrl}/orders`)
+      .then(res => {
+        setOrderList(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   return (
     <View>
-      <Text>Order</Text>
+      <FlatList
+        data={orderList}
+        renderItem={({item}) => (
+          <OrderCard navigation = {props.navigation} {...item}  />
+        )}
+        keyExtractor={item => item.id.toString()}
+      />
     </View>
   );
 };

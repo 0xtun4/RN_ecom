@@ -1,18 +1,50 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, Dimensions, FlatList, Image } from "react-native";
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  Dimensions,
+  FlatList,
+  Image,
+} from 'react-native';
 import {connect} from 'react-redux';
 import * as actions from '../../../redux/actions/cartActions';
 import style from '../../../shared/Style';
-import { Button } from "react-native-paper";
+import {Button} from 'react-native-paper';
+import axios from 'axios';
+import {prefixUrl} from '../../../services/instance';
+import Toast from 'react-native-toast-message';
 
 let {height} = Dimensions.get('window');
 const Confirm = props => {
   const confirm = props.route.params;
   const confirmOrder = () => {
-      setTimeout(() => {
-        props.clearCart();
-        props.navigation.navigate('Cart');
-      }, 1000);
+    const order = confirm.order.order;
+    axios
+      .post(`${prefixUrl}/orders`, order)
+      .then(res => {
+        if (res.status == 200 || res.status == 201) {
+          Toast.show({
+            topOffset: 60,
+            type: 'success',
+            text1: 'Order Completed',
+            text2: '',
+          });
+          setTimeout(() => {
+            props.clearCart();
+            props.navigation.navigate('Cart');
+          }, 500);
+        }
+      })
+      .catch(error => {
+        Toast.show({
+          topOffset: 60,
+          type: 'error',
+          text1: 'Something went wrong',
+          text2: `Please try again ${error}`,
+        });
+      });
   };
   return (
     <ScrollView contentContainerStyle={styles.container}>
