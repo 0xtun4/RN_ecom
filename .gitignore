@@ -5,7 +5,6 @@ backend/node_modules/.bin/mime
 /.idea
 backend/public/.DS_Store
 backend/.env
-.env
 =======
 # OSX
 #
@@ -83,4 +82,3 @@ yarn-error.log
 !.yarn/versions
 .env
 >>>>>>> t/master
-backend/.env
