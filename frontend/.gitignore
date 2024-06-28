@@ -5,6 +5,7 @@ backend/node_modules/.bin/mime
 /.idea
 backend/public/.DS_Store
 backend/.env
+.env
 =======
 # OSX
 #
