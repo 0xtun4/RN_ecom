@@ -1,8 +1,8 @@
-import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import Login from '../views/user/Login';
-import Register from '../views/user/Register';
-import UserProfile from '../views/user/UserProfile';
+import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import Login from "../views/user/Login";
+import Register from "../views/user/Register";
+import UserProfile from "../views/user/UserProfile";
 
 const Stack = createStackNavigator();
 

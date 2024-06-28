@@ -1,11 +1,11 @@
-import React, {useContext, useEffect} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {Button, TextInput} from 'react-native-paper';
-import FormContainer from '../../shared/FormContainer';
-import style from '../../shared/Style';
-import Error from '../../shared/Error';
-import AuthGlobal from '../../context/store/AuthGlobal';
-import {loginUser} from '../../context/actions/AuthActions';
+import React, { useContext, useEffect } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { Button, TextInput } from "react-native-paper";
+import FormContainer from "../../shared/FormContainer";
+import style from "../../shared/Style";
+import Error from "../../shared/Error";
+import AuthGlobal from "../../context/store/AuthGlobal";
+import { loginUser } from "../../context/actions/AuthActions";
 
 const Login = props => {
   const context = useContext(AuthGlobal);

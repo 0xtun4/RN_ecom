@@ -1,13 +1,14 @@
-import React, {useContext} from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {View} from 'react-native';
-import HomeNavigator from './HomeNavigator';
-import CartNavigator from './CartNavigator';
-import CartIcon from '../shared/CartIcon';
-import UserNavigator from './UserNavigator';
-import AdminNavigator from './AdminNavigator';
-import AuthGlobal from '../context/store/AuthGlobal';
+import React, { useContext } from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { View } from "react-native";
+import HomeNavigator from "./HomeNavigator";
+import CartNavigator from "./CartNavigator";
+import CartIcon from "../shared/CartIcon";
+import UserNavigator from "./UserNavigator";
+import AdminNavigator from "./AdminNavigator";
+import AuthGlobal from "../context/store/AuthGlobal";
+
 const Tab = createBottomTabNavigator();
 
 const Main = () => {

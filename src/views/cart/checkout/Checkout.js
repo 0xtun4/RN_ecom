@@ -1,13 +1,13 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {View, Text, ScrollView, StyleSheet} from 'react-native';
-import RNPickerSelect from 'react-native-picker-select';
-import FormContainer from '../../../shared/FormContainer';
-import Input from '../../../shared/Input';
-import {connect} from 'react-redux';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {Button} from 'react-native-elements';
-import Toast from 'react-native-toast-message';
-import AuthGlobal from '../../../context/store/AuthGlobal';
+import React, { useContext, useEffect, useState } from "react";
+import { StyleSheet, View } from "react-native";
+import RNPickerSelect from "react-native-picker-select";
+import FormContainer from "../../../shared/FormContainer";
+import Input from "../../../shared/Input";
+import { connect } from "react-redux";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { Button } from "react-native-elements";
+import Toast from "react-native-toast-message";
+import AuthGlobal from "../../../context/store/AuthGlobal";
 
 const countries = require('../../../../assets/data/countries.json');
 const Checkout = props => {

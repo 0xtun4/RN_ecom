@@ -1,9 +1,9 @@
-import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import Categories from '../views/admin/Categories';
-import Products from '../views/admin/Products';
-import ProductsForm from '../views/admin/ProductsForm';
-import Order from '../views/admin/Order';
+import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import Categories from "../views/admin/Categories";
+import Products from "../views/admin/Products";
+import ProductsForm from "../views/admin/ProductsForm";
+import Order from "../views/admin/Order";
 
 const Stack = createStackNavigator();
 

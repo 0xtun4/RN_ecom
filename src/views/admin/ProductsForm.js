@@ -1,27 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  Platform,
-} from 'react-native';
-import FormContainer from '../../shared/FormContainer';
-import {Button, List, TextInput} from 'react-native-paper';
-import style from '../../shared/Style';
-import {Picker} from '@react-native-picker/picker';
-import RNPickerSelect from 'react-native-picker-select';
-import axios from 'axios';
-import {prefixUrl} from '../../services/instance';
-import {ListItem} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {white} from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import Toast from 'react-native-toast-message';
+import React, { useEffect, useState } from "react";
+import { launchImageLibrary } from "react-native-image-picker";
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import FormContainer from "../../shared/FormContainer";
+import { Button, TextInput } from "react-native-paper";
+import style from "../../shared/Style";
+import RNPickerSelect from "react-native-picker-select";
+import axios from "axios";
+import { prefixUrl } from "../../services/instance";
+import Icon from "react-native-vector-icons/FontAwesome";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Toast from "react-native-toast-message";
 import mime from "mime";
+
 const ProductsForm = props => {
   const [pickerValue, setPickerValue] = useState();
   const [brand, setBrand] = useState();

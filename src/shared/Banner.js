@@ -1,6 +1,6 @@
-import React from 'react';
-import {Dimensions} from 'react-native';
-import Carousel from 'react-native-snap-carousel';
+import React from "react";
+import { Dimensions } from "react-native";
+import Carousel from "react-native-snap-carousel";
 
 const windowWidth = Dimensions.get('window').width;
 

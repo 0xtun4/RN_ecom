@@ -1,15 +1,8 @@
-import React, {useCallback, useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
-import axios from 'axios';
-import {prefixUrl} from '../../services/instance';
-import {useFocusEffect} from '@react-navigation/native';
+import React, { useCallback, useState } from "react";
+import { FlatList, View } from "react-native";
+import axios from "axios";
+import { prefixUrl } from "../../services/instance";
+import { useFocusEffect } from "@react-navigation/native";
 import OrderCard from "../../shared/OrderCard";
 
 const Order = props => {
@@ -38,7 +31,7 @@ const Order = props => {
       <FlatList
         data={orderList}
         renderItem={({item}) => (
-          <OrderCard navigation = {props.navigation} {...item}  />
+          <OrderCard navigation = {props.navigation} {...item} editMode={true} />
         )}
         keyExtractor={item => item.id.toString()}
       />

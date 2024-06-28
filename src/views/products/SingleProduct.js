@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, ScrollView, Image } from 'react-native';
+import React, {useState} from 'react';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 import style from '../../shared/Style';
-import { Button } from "react-native-paper";
+import {Button} from 'react-native-paper';
 import {connect} from 'react-redux';
-import Toast from "react-native-toast-message";
-import * as actions from "../../redux/actions/cartActions";
-const SingleProduct = (props) => {
+import Toast from 'react-native-toast-message';
+import * as actions from '../../redux/actions/cartActions';
+
+const SingleProduct = props => {
   const [item, setItem] = useState(props.route.params.item);
   const [availability, setAvailability] = useState('');
 
@@ -17,9 +18,10 @@ const SingleProduct = (props) => {
             style={styles.image}
             resizeMode={'contain'}
             source={{
-              uri: item.image
-                ? item.image
-                : 'https://cdn.pixabay.com/photo/2012/04/01/17/29/box-23649_960_720.png',
+              uri:
+                item.image && item.image !== ''
+                  ? item.image
+                  : 'https://cdn.pixabay.com/photo/2012/04/01/17/29/box-23649_960_720.png',
             }}
           />
         </View>
@@ -97,6 +99,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
 
 export default connect(null, mapDispatchToProps)(SingleProduct);

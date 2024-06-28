@@ -1,9 +1,10 @@
-import React from 'react';
-import {Dimensions, Image, Text, View, StyleSheet} from 'react-native';
-import { Button } from 'react-native-paper';
-import {connect} from 'react-redux';
-import * as actions from '../../redux/actions/cartActions';
+import React from "react";
+import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import { Button } from "react-native-paper";
+import { connect } from "react-redux";
+import * as actions from "../../redux/actions/cartActions";
 import Toast from "react-native-toast-message";
+
 let {width} = Dimensions.get('window');
 
 const ProductCard = props => {

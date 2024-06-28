@@ -1,15 +1,14 @@
-import React, {useCallback, useContext, useEffect, useState} from 'react';
-import {View, Text, ScrollView, StyleSheet} from 'react-native';
-import {useFocusEffect} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {prefixUrl} from '../../services/instance';
-import AuthGlobal from '../../context/store/AuthGlobal';
-import {logoutUser} from '../../context/actions/AuthActions';
-import axios from 'axios';
-import {Button} from 'react-native-paper';
-import style from '../../shared/Style';
-import OderCard from '../../shared/OrderCard';
-import OrderCard from '../../shared/OrderCard';
+import React, { useCallback, useContext, useState } from "react";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { prefixUrl } from "../../services/instance";
+import AuthGlobal from "../../context/store/AuthGlobal";
+import { logoutUser } from "../../context/actions/AuthActions";
+import axios from "axios";
+import { Button } from "react-native-paper";
+import OrderCard from "../../shared/OrderCard";
+
 const UserProfile = props => {
   const context = useContext(AuthGlobal);
   const [userProfile, setUserProfile] = useState();

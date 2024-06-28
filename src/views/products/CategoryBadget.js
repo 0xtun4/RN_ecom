@@ -1,6 +1,7 @@
-import React from 'react';
-import {Dimensions, Image, Text, View, StyleSheet} from 'react-native';
-import { Button } from 'react-native-paper';
+import React from "react";
+import { Dimensions, View } from "react-native";
+import { Button } from "react-native-paper";
+
 let {width} = Dimensions.get('window');
 
 const CategoryBadget = props => {

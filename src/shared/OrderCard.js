@@ -1,12 +1,12 @@
-import {React, useEffect, useState} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import TrafficLight from './TrafficLight';
-import axios from 'axios';
-import {prefixUrl} from '../services/instance';
-import Toast from 'react-native-toast-message';
-import {StyleSheet, Text, View} from 'react-native';
-import RNPickerSelect from 'react-native-picker-select';
-import {Button} from 'react-native-paper';
+import { React, useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import TrafficLight from "./TrafficLight";
+import axios from "axios";
+import { prefixUrl } from "../services/instance";
+import Toast from "react-native-toast-message";
+import { StyleSheet, Text, View } from "react-native";
+import RNPickerSelect from "react-native-picker-select";
+import { Button } from "react-native-paper";
 
 const codes = [
   {label: 'pending', value: '3'},
@@ -23,13 +23,13 @@ const OrderCard = props => {
   console.log(props.status);
 
   useEffect(() => {
-    // if (props.editMode) {
-    AsyncStorage.getItem('jwt')
-      .then(res => {
-        setToken(res);
-      })
-      .catch(error => console.log(error));
-    // }
+    if (props.editMode) {
+      AsyncStorage.getItem('jwt')
+        .then(res => {
+          setToken(res);
+        })
+        .catch(error => console.log(error));
+    }
 
     if (props.status === 3) {
       setOrderStatus(<TrafficLight unavailable />);
@@ -121,21 +121,22 @@ const OrderCard = props => {
           <Text style={styles.textColor}>Price: </Text>
           <Text style={styles.price}>$ {props.totalPrice}</Text>
         </View>
-
-        <View>
-          <RNPickerSelect
-            placeholder={{label: 'Change Status', value: null}}
-            style={pickerSelectStyles}
-            onValueChange={e => setStatusChange(e)}
-            items={codes}
-          />
-          <Button
-            mode={'text'}
-            textColor={'white'}
-            onPress={() => updateOrder()}>
-            Change status
-          </Button>
-        </View>
+        {props.editMode ? (
+          <View>
+            <RNPickerSelect
+              placeholder={{label: 'Change Status', value: null}}
+              style={pickerSelectStyles}
+              onValueChange={e => setStatusChange(e)}
+              items={codes}
+            />
+            <Button
+              mode={'text'}
+              textColor={'white'}
+              onPress={() => updateOrder()}>
+              Change status
+            </Button>
+          </View>
+        ) : null}
       </View>
     </View>
   );
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#62B1F6',
     padding: 5,
   },
-  textColor:{
+  textColor: {
     color: 'white',
   },
   priceContainer: {

@@ -1,24 +1,14 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {API_URL} from '@env';
-import {
-  View,
-  StyleSheet,
-  Text,
-  FlatList,
-  TextInput,
-  Image,
-  ScrollView,
-  ActivityIndicator,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import ProductList from './ProductList';
-import SearchedProducts from './SearchedProducts';
-import BannerCarousel from '../../shared/Banner';
-import CategoryFilter from './CategoryFilter';
-import axios from 'axios';
-import {useFocusEffect} from '@react-navigation/native';
-import {prefixUrl} from '../../services/instance';
-import style from '../../shared/Style';
+import React, { useCallback, useState } from "react";
+import { ActivityIndicator, FlatList, Image, ScrollView, StyleSheet, TextInput, View } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import ProductList from "./ProductList";
+import SearchedProducts from "./SearchedProducts";
+import BannerCarousel from "../../shared/Banner";
+import CategoryFilter from "./CategoryFilter";
+import axios from "axios";
+import { useFocusEffect } from "@react-navigation/native";
+import { prefixUrl } from "../../services/instance";
+import style from "../../shared/Style";
 
 const ProductContainer = props => {
   const [products, setProducts] = useState([]);

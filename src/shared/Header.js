@@ -1,13 +1,5 @@
-import React from 'react';
-import {
-  StyleSheet,
-  Image,
-  SafeAreaView,
-  View,
-  TextInput,
-  Text,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import React from "react";
+import { Image, SafeAreaView, StyleSheet } from "react-native";
 
 const Header = () => {
   return (

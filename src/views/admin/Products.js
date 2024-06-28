@@ -1,25 +1,13 @@
-import React, {useCallback, useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  Dimensions,
-  TextInput,
-  ActivityIndicator,
-  FlatList,
-} from 'react-native';
-import {useFocusEffect} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
-import {prefixUrl} from '../../services/instance';
-import SearchedProducts from '../products/SearchedProducts';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import style from '../../shared/Style';
-import ListItem from './ListItem';
-import {Button} from 'react-native-paper';
-import {white} from 'react-native-paper/lib/typescript/styles/themes/v2/colors';
+import React, { useCallback, useState } from "react";
+import { ActivityIndicator, Dimensions, FlatList, StyleSheet, Text, TextInput, View } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
+import { prefixUrl } from "../../services/instance";
+import Icon from "react-native-vector-icons/FontAwesome";
+import style from "../../shared/Style";
+import ListItem from "./ListItem";
+import { Button } from "react-native-paper";
 
 let {width, height} = Dimensions.get('window');
 const ListHeader = () => {

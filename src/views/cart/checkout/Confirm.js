@@ -1,20 +1,12 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  Dimensions,
-  FlatList,
-  Image,
-} from 'react-native';
-import {connect} from 'react-redux';
-import * as actions from '../../../redux/actions/cartActions';
-import style from '../../../shared/Style';
-import {Button} from 'react-native-paper';
-import axios from 'axios';
-import {prefixUrl} from '../../../services/instance';
-import Toast from 'react-native-toast-message';
+import React from "react";
+import { Dimensions, Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { connect } from "react-redux";
+import * as actions from "../../../redux/actions/cartActions";
+import style from "../../../shared/Style";
+import { Button } from "react-native-paper";
+import axios from "axios";
+import { prefixUrl } from "../../../services/instance";
+import Toast from "react-native-toast-message";
 
 let {height} = Dimensions.get('window');
 const Confirm = props => {

@@ -1,7 +1,6 @@
-import React, {useState} from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState } from "react";
+import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Button, RadioButton } from "react-native-paper";
-import countries from "../../../../assets/data/countries.json";
 import RNPickerSelect from "react-native-picker-select";
 
 const method = [

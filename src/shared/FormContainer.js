@@ -1,6 +1,6 @@
-import React from 'react';
-import {Dimensions, ScrollView, Text, StyleSheet} from 'react-native';
-import style from './Style';
+import React from "react";
+import { Dimensions, ScrollView, StyleSheet, Text } from "react-native";
+import style from "./Style";
 
 let {width} = Dimensions.get('window');
 

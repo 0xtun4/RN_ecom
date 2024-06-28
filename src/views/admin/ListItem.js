@@ -1,18 +1,9 @@
-import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  Dimensions,
-  Modal,
-  TouchableHighlight,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {useNavigation} from '@react-navigation/native';
-import {Button} from 'react-native-paper';
-import style from '../../shared/Style';
+import React, { useState } from "react";
+import { Dimensions, Image, Modal, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { useNavigation } from "@react-navigation/native";
+import { Button } from "react-native-paper";
+import style from "../../shared/Style";
 
 const {width} = Dimensions.get('window');
 

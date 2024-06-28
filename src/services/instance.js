@@ -1,5 +1,3 @@
-import {Platform} from 'react-native';
-
 export let prefixUrl = 'https://api.hnttv.live/api/v1';
 // {
 //   Platform.OS === 'android'

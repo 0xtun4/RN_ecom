@@ -12,16 +12,20 @@ function MyStack() {
       <Stack.Screen
         name="Cart"
         component={Cart}
-        options={{
-          // headerShown: false,
-        }}
+        options={
+          {
+            // headerShown: false,
+          }
+        }
       />
       <Stack.Screen
         name="Checkout"
         component={checkoutNavigator}
-        options={{
-          // headerShown: false,
-        }}
+        options={
+          {
+            // headerShown: false,
+          }
+        }
       />
     </Stack.Navigator>
   );

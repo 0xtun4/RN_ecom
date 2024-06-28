@@ -1,12 +1,7 @@
-import React from 'react';
-import {
-  Touchable,
-  View,
-  Dimensions,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native';
-import ProductCard from './ProductCard';
+import React from "react";
+import { Dimensions, TouchableOpacity } from "react-native";
+import ProductCard from "./ProductCard";
+
 let {width} = Dimensions.get('window');
 
 const ProductList = props => {

@@ -1,14 +1,6 @@
-import React from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {
-  FlatList,
-  StyleSheet,
-  ScrollView,
-  View,
-  TouchableOpacity,
-  Text,
-} from 'react-native';
-import CategoryBadget from './CategoryBadget';
+import React from "react";
+import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import CategoryBadget from "./CategoryBadget";
 
 const CategoryFilter = props => {
   const {item} = props;

@@ -1,12 +1,13 @@
-import React from 'react';
-import {View, Text, ScrollView} from 'react-native';
-import {Button, TextInput} from 'react-native-paper';
-import FormContainer from '../../shared/FormContainer';
-import style from '../../shared/Style';
-import Error from '../../shared/Error';
-import axios from 'axios';
-import Toast from 'react-native-toast-message';
-import {prefixUrl} from '../../services/instance';
+import React from "react";
+import { ScrollView, Text, View } from "react-native";
+import { Button, TextInput } from "react-native-paper";
+import FormContainer from "../../shared/FormContainer";
+import style from "../../shared/Style";
+import Error from "../../shared/Error";
+import axios from "axios";
+import Toast from "react-native-toast-message";
+import { prefixUrl } from "../../services/instance";
+
 const Register = props => {
   const [email, setEmail] = React.useState('');
   const [name, setName] = React.useState('');

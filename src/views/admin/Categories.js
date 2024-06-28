@@ -1,19 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import {Button, TextInput} from 'react-native-paper';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  Dimensions,
-  FlatList,
-} from 'react-native';
-import {prefixUrl} from '../../services/instance';
-import style from '../../shared/Style';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
-import ListItem from './ListItem';
+import React, { useEffect, useState } from "react";
+import { Button, TextInput } from "react-native-paper";
+import { Dimensions, FlatList, StyleSheet, Text, View } from "react-native";
+import { prefixUrl } from "../../services/instance";
+import style from "../../shared/Style";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from "axios";
 
 let {width} = Dimensions.get('window');
 

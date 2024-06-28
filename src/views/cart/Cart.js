@@ -1,18 +1,11 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {
-  View,
-  StyleSheet,
-  Text,
-  Dimensions,
-  Image,
-  Touchable,
-  TouchableOpacity,
-} from 'react-native';
-import * as actions from '../../redux/actions/cartActions';
-import {Button} from 'react-native-elements';
-import style from '../../shared/Style';
-import {Swipeable} from 'react-native-gesture-handler';
+import React from "react";
+import { connect } from "react-redux";
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import * as actions from "../../redux/actions/cartActions";
+import { Button } from "react-native-elements";
+import style from "../../shared/Style";
+import { Swipeable } from "react-native-gesture-handler";
+
 const Cart = props => {
   const rightSwipeActions = item => {
     return (

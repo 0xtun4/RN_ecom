@@ -1,9 +1,9 @@
-import React, {useEffect, useReducer, useState} from 'react';
-import {jwtDecode} from 'jwt-decode';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import authReducer from '../reducer/AuthReducer';
-import {setCurrentUser} from '../actions/AuthActions';
-import AuthGlobal from './AuthGlobal';
+import React, { useEffect, useReducer, useState } from "react";
+import { jwtDecode } from "jwt-decode";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import authReducer from "../reducer/AuthReducer";
+import { setCurrentUser } from "../actions/AuthActions";
+import AuthGlobal from "./AuthGlobal";
 
 const Auth = props => {
   const [stateUser, dispatch] = useReducer(authReducer, {
