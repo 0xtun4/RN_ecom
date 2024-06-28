@@ -27,11 +27,12 @@ router.get(`/:id`, async (req, res) =>{
 })
 
 router.post('/', async (req,res)=>{
+    console.log(req.body.user)
     const orderItemsIds = Promise.all(req.body.orderItems.map(async (orderItem) =>{
         let newOrderItem = new OrderItem({
             quantity: orderItem.quantity,
-            product: orderItem.product
-        })
+            product: orderItem.product.id
+        });
 
         newOrderItem = await newOrderItem.save();
 
@@ -69,6 +70,7 @@ router.post('/', async (req,res)=>{
 
 
 router.put('/:id',async (req, res)=> {
+    console.log(req.params)
     const order = await Order.findByIdAndUpdate(
         req.params.id,
         {

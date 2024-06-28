@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 
 const categorySchema = mongoose.Schema({
-    name: {
+    label: {
+        type: String,
+        required: true,
+    },
+    data_value: {
         type: String,
         required: true,
     },
@@ -14,10 +18,11 @@ const categorySchema = mongoose.Schema({
 })
 
 
-categorySchema.method('toJSON', function(){
-    const { __v, ...object } = this.toObject();
+categorySchema.method('toJSON', function() {
+    const { __v, data_value, ...object } = this.toObject();
     const { _id:id, ...result } = object;
-    return { ...result, id };
+    return { ...result, id, value: id };
 });
+
 
 exports.Category = mongoose.model('Category', categorySchema);

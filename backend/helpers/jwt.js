@@ -6,7 +6,7 @@ function authJwt() {
     return expressJwt({
         secret: secret,
         algorithms: ['HS256'],
-        isRevoked: isRevoked
+        isRevoked: isRevokeCallback
     }).unless({
         path: [
             {url: /\/public\/uploads(.*)/ , methods: ['GET', 'OPTIONS'] },
@@ -19,12 +19,15 @@ function authJwt() {
     })
 }
 
-async function isRevoked(req, payload, done) {
-    if(!payload.isAdmin) {
-        done(null, true)
+async function isRevokeCallback(req, payload, done) {
+    const userId = payload.userId;
+    const requestedUserPath = req._parsedUrl.pathname;
+    const requestedUserId = requestedUserPath.substring(requestedUserPath.lastIndexOf('/') + 1);
+    if (req.url.startsWith('/api/v1/users/') && userId !== requestedUserId) {
+        return done(null, true);
     }
-
-    done();
+    
+    return done();
 }
 
 
