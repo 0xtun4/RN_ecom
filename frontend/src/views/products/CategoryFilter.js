@@ -3,10 +3,10 @@ import { ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import CategoryBadget from "./CategoryBadget";
 
 const CategoryFilter = props => {
-  const {item} = props;
+  const {item, key} = props;
   return (
     <ScrollView style={styles.scrollView} bounces={true} horizontal={true}>
-      <TouchableOpacity key={1} style={styles.listItem}>
+      <TouchableOpacity key={key} style={styles.listItem}>
         <CategoryBadget {...item} />
       </TouchableOpacity>
     </ScrollView>

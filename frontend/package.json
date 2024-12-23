@@ -25,6 +25,8 @@
     "expo-image-picker": "^15.0.5",
     "fbjs": "^3.0.5",
     "jwt-decode": "^4.0.0",
+    "metro": "^0.81.0",
+    "metro-core": "^0.81.0",
     "mime": "^4.0.3",
     "react": "18.2.0",
     "react-dom": "18.0.0",

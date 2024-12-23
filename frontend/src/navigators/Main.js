@@ -15,14 +15,14 @@ const Main = () => {
   const context = useContext(AuthGlobal);
   return (
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="MainHome"
       screenOptions={{
         keyboardHidesTabBar: true,
         showLabel: false,
         activeTintColor: 'blue',
       }}>
       <Tab.Screen
-        name="Home"
+        name="MainHome"
         component={HomeNavigator}
         options={{
           headerShown: false,

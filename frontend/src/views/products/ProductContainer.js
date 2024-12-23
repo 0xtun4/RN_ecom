@@ -127,7 +127,7 @@ const ProductContainer = props => {
                     horizontal={true}
                     data={categories}
                     renderItem={({item}) => (
-                      <CategoryFilter item={item} key={item.name} />
+                      <CategoryFilter item={item}/>
                     )}
                     keyExtractor={item => item.name}
                   />
@@ -139,7 +139,6 @@ const ProductContainer = props => {
                     renderItem={({item}) => (
                       <ProductList
                         navigation={props.navigation}
-                        key={item.brand}
                         item={item}
                       />
                     )}

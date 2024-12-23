@@ -1,4 +1,6 @@
-export let prefixUrl = 'https://api.hnttv.live/api/v1';
+import {Platform} from "react-native";
+
+export let prefixUrl = 'https://rn.tunatkit.me/api/v1';
 // {
 //   Platform.OS === 'android'
 //     ? (prefixUrl = process.env.API_URL)
